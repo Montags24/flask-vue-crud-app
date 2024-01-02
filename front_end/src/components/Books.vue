@@ -90,6 +90,7 @@ export default {
             this.newBook.title = ""
             this.newBook.author = ""
             this.newBook.read = ""
+            this.bookEditIndex = null
             this.isEditing = false
         },
         deleteBook(index) {
