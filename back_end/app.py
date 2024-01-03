@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template, send_from_directory
 from flask_cors import CORS
 
 
@@ -21,12 +21,23 @@ BOOKS = [
 
 
 # sanity check route
+@app.route("/", methods=["GET", "POST"])
+def index():
+    # This is a vue project that serves the static index file only
+    return render_template("index.html")
+
+
+@app.route("/static/<path:filename>")
+def serve_static(filename):
+    return send_from_directory("static", filename)
+
+
+# sanity check route
 @app.route("/ping", methods=["GET"])
 def ping_pong():
     return jsonify("pong!")
 
 
-# sanity check route
 @app.route("/api_get_books", methods=["GET"])
 def api_get_books():
     api_package = dict(rc=0, books=BOOKS)
@@ -118,4 +129,4 @@ def api_edit_book():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

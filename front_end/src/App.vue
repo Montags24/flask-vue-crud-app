@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Navbar />
     <RouterView :books="books" />
   </div>
 </template>
@@ -7,6 +8,7 @@
 <script>
 import { reactive } from 'vue';
 
+import Navbar from '@/components/Navbar.vue'
 import Books from '@/js/Books.js'
 const books = reactive(new Books())
 
@@ -16,6 +18,9 @@ export default {
     return {
       books: books,
     };
+  },
+  components: {
+    Navbar
   },
   methods: {
     // Any additional methods can be added here
@@ -31,6 +36,6 @@ export default {
 
 <style>
 #app {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>
